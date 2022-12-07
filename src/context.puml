@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(uss, "Utilisateur station service", "un agent d'une station service traitant avec la maison mere avec un role et des habilitations")
+Person(umm, "Utilisateur maison  mere", "un employe de la maison mere avec un role et des habilitations")
+System(vde, "VD Energy System", "Permet á la maison mère de gérer la vente et la distribution de leurs différentes produits dans les stations service")
+System_Ext(es, "System Externe", "MAIL, Payment en ligne, Serveur Authentification/Autorisiation")
+'System_Ext(mbs, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+Rel(uss, vde, "definir seuil stock, emettre bon de commande, valider payment facture [HTTPS] ")
+Rel_R(umm, vde, "Valider ou rejeter commande, gerer utilisateurs ,ajouter station service archiver bon de commande [HTTPS] ")
+Rel_R(vde, es, "Utiliser [HTTPS,SMTP]")
+Rel(es, uss, "Verifier acces et habilitations, envoyer notication, permettre payment en ligne [HTTPS,SMTP]")
+Rel(es, umm, "Verifier acces et habilitations, envoyer notication [HTTPS,SMTP]")
+'Rel(ibs, es, "Sends e-mails", "SMTP")
+'Rel(ibs, mbs, "Uses")
+@enduml
