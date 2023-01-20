@@ -1,0 +1,21 @@
+@startuml Basic Sample
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(uss, "Utilisateur station service", "un agent d'une station service traitant avec la maison mere avec un role et des habilitations")
+System_Boundary(c1, "VD Energy System") {
+    ContainerDb(database, "Base de données", "Postgres", "Une base de donnée qui permet de stocker toutes les informations concernant le stock et les utilisateurs.")
+    Container(backend_app, "API", "Java | Springboot", "Une application qui fournit des api concernant toutes les informations liées ")
+    Container(web_app, "Progressive Web App", "Angular", "Une application")
+}
+System_Ext(sn, "Serveur de notifications", "mail,sms")
+System_Ext(kc, "Serveur d'authentification et d'autorisation", "Security,Keycloack")
+System_Ext(dg, "Fournisseur de paiement en ligne", "Digipay")
+Rel(backend_app, sn, "Uses", "SMTP/SMPP")
+Rel(backend_app, kc, "Uses", "HTTPS")
+Rel(backend_app, dg, "Uses", "HTTPS")
+Rel(sn, uss, "Send", "SMTP/SMPP")
+
+Rel(uss, c1, "Uses", "HTTPS")
+Rel(web_app, backend_app, "Uses", "HTTPS")
+Rel(backend_app, database, "Uses", "HTTPS")
+@enduml

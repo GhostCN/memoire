@@ -6,7 +6,7 @@ LAYOUT_WITH_LEGEND()
 Person(uss, "Utilisateur station service", "un agent d'une station service traitant avec la maison mere avec un role et des habilitations")
 Person(umm, "Utilisateur maison  mere", "un employe de la maison mere avec un role et des habilitations")
 System(vde, "VD Energy System", "Permet á la maison mère de gérer la vente et la distribution de leurs différentes produits dans les stations service")
-System_Ext(es, "System Externe", "MAIL, Payment en ligne, Serveur Authentification/Autorisiation")
+System_Ext(es, "System Externe", "MAIL, Payement en ligne, Serveur Authentification/Autorisiation")
 'System_Ext(mbs, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
 
 Rel(uss, vde, "definir seuil stock, emettre bon de commande, valider payment facture [HTTPS] ")
